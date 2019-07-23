@@ -1,0 +1,32 @@
+---
+# Gitlab CI configuration for my custom build server. For contributors,
+# please use .travis.yml
+
+stages:
+# - lint
+- test
+
+.test: &test
+  tags:
+    - python2.7
+    - esphomelib-test
+  stage: test
+  cache:
+    paths:
+     - /root/.platformio
+     - .piolibdeps
+
+test-basic:
+  <<: *test
+  script:
+    - |
+      platformio run \
+          -e livingroom \
+          -e livingroom8266
+
+test-advanced:
+  <<: *test
+  script:
+  - |
+    platformio run \
+        -e custombmp180

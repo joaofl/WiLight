@@ -1,4 +1,4 @@
-.pio
+.pio/build
 .pioenvs
 .piolibdeps
 .vscode/*
